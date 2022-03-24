@@ -7,9 +7,20 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="app"></div>
-  <input type="text" id="input-box"></input>
-  <button id="btn">선택</button>
+  <div > 
+  <div id="app" style="height : 600px; width : 800px;background-color: lightblue; margin-left: 150px;"></div>
+  
+
+
+      <div align="center">
+      <input type="text" id="input-box"></input>
+      <button id="btn" >전송</button>
+ 
+
+  </div>
+  </div> 
+  
+
 </body>
 </html>
 <script>
@@ -23,14 +34,30 @@
     }
   }());
   const render = (state) =>{
-    document.createElement('ul')
-    _app.innerHTML = `
+    _app.innerHTML = `<div align="right">
       ${state.map(content=>{
-        return `<li>${content}</li>`
+        let today = new Date();
+        let hours = today.getHours();
+        hours = hours / 10 ? hours : "0" + hours
+        let minutes = today.getMinutes();
+        minutes = minutes / 10 > 1? minutes : "0" + minutes
+        return `<div 
+                style="display:flex;
+                width:100px;
+                height:30px;
+                display:flex-box;
+                background-color:yellow;
+                color:black;
+                justify-content:center;
+                margin-top:15px;
+                margin-right:10px; border-radius: 30px;"><p style="margin-bottom:8px">${content}</p>
+          </div>
+          
+          <p>${hours + ': ' + minutes}</p>`
         // <li>{content}</li><li>{content}</li><li>{content}</li><li>{content}</li><li>{content}</li><li>{content}</li><li>{content}</li><li>{content}</li>
-      })}
+      }).join('')}
 
-    `;
+    </div>`;
   }
   const inputBox = document.querySelector('#input-box')
   inputBox.addEventListener('keyup', _submit)
