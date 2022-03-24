@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <input type="text" id="input-box"></input>
+  <button id="btn">선택</button>
+</body>
+</html>
+<script>
+  const _app = document.querySelector("#app")
+  const $closure = (function() {
+    var contentArr = []
+    return function (text){
+      contentArr.push(text)
+      return contentArr
+      
+    }
+  }());
+  const render = (state) =>{
+    document.createElement('ul')
+    _app.innerHTML = `
+      ${state.map(content=>{
+        return `<li>${content}</li>`
+        // <li>{content}</li><li>{content}</li><li>{content}</li><li>{content}</li><li>{content}</li><li>{content}</li><li>{content}</li><li>{content}</li>
+      })}
+
+    `;
+  }
+  const inputBox = document.querySelector('#input-box')
+  inputBox.addEventListener('keyup', _submit)
+  function _submit(event){
+    if (event.key === 'Enter'){
+      if (event.target.value.length !== 0){
+        render($closure(event.target.value))
+        event.target.value = ''
+      }
+    }
+  }
+  
+  
+
+
+
+  
+  
+</script>
